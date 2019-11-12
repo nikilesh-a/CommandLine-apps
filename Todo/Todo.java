@@ -21,6 +21,8 @@ class Todo
 		int userOption;
 
 		System.out.println("\t*** Silverfox Todo ***");
+		printTodoList(filePath);
+
 		while(continueOption == 1)
 		{
 			String option1 = "1 = New todo(+)";
@@ -100,4 +102,3 @@ class Todo
 
 	}
 }
-/
