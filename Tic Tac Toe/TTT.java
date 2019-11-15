@@ -4,23 +4,20 @@ class TTT{
     static int [][] board = new int[3][3];
     static int row = 3;
     static int column = 3;
-    static boolean winnerFlag;
+   private static boolean winnerFlag;
     public static void main(String [] args)  {
         Scanner scan = new Scanner(System.in);
 
         System.out.printf("\t***** Welcome to Tic Tac Toe *****\n\n");
         System.out.println("Player 1, enter your name");
         String name1 = scan.nextLine();
-        System.out.printf("Okay, %s your id will be %d .\n",name1, 1);
-
-        System.out.println();
-
+        System.out.printf("Okay, %s your id will be %d .\n\n",name1, 1);
         System.out.println("Player 2, enter your name");
         String name2 = scan.nextLine();
         System.out.printf("Okay, %s your id will be %d .\n\n",name2, 2);
 
         Player user1 = new Player(name1,1);
-        Player user2 = new Player(name2, 2);
+        Player user2 = new Player(name2,2);
 
         printBoard(); //displaying board to user
         boolean flag = startGame(user1);
@@ -49,8 +46,6 @@ class TTT{
         printBoard(); //displaying board to user
 
         return isGameOver(user);
-
-
     }
 
     static int[] readPosition(Player user)  { //for reading user input for placing the user id
@@ -82,7 +77,7 @@ class TTT{
          }
      }
      static private boolean isGameOver(Player user) { //checking whether game over
-           winnerFlag =  isWinner(user); //calling iswinner fn to see any user wins the game
+           winnerFlag =  isCurrentPlayerWinner(user); //calling iswinner fn to see any user wins the game
            if(! winnerFlag ) {
                for (int i = 0; i < row; i++) {
                    for (int j = 0; j < column; j++) {
@@ -98,7 +93,7 @@ class TTT{
            return true;
      }
 
-     static boolean isWinner(Player user){ //checks whether the user has won the game 
+     static boolean isCurrentPlayerWinner(Player user){ //checks whether the user has won the game 
         winnerFlag = false;
         for(int i=0; i<row; i++){
             for(int j=0; j<column; j++)
@@ -112,7 +107,7 @@ class TTT{
                         board[0][2]==user.id && board[1][2]==user.id && board[2][2]==user.id || /* 3rd column */
 
                         board[0][0]==user.id && board[1][1]==user.id  && board[2][2]==user.id || /* positive slope */
-                        board[0][2]==user.id && board[1][1]==user.id  && board[2][0]==user.id /* negative slope */
+                        board[0][2]==user.id && board[1][1]==user.id  && board[2][0]==user.id    /* negative slope */
                 )
                 {
                     winnerFlag = true;
@@ -135,5 +130,6 @@ class Player extends TTT{
     Player(String name, int id){
         this.id = id;
         this.name = name;
+        System.out.println("winnerFalg");
     }
 }
